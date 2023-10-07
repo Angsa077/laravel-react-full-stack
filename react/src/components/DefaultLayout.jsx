@@ -7,7 +7,7 @@ import axiosClient from "../axios-client";
 import { FiMenu } from 'react-icons/fi';
 
 const DefaultLayout = () => {
-    const { user, token, setUser, setToken } = useStateContext();
+    const { user, token, setUser, setToken, notification } = useStateContext();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const location = useLocation();
@@ -44,7 +44,7 @@ const DefaultLayout = () => {
     return (
         <>
             {/* Navbar */}
-            <nav className="fixed top-0 z-50 w-full shadow-md">
+            <nav className="fixed top-0 z-50 w-full shadow-md bg-white">
                 <div className="px-3 py-1 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start">
@@ -102,7 +102,7 @@ const DefaultLayout = () => {
 
             {/* Sidebar */}
             <aside
-                className={`fixed top-14 left-0 z-40 w-64 h-screen pt-5 transition-transform ${isMenuOpen ? '-translate-x-0' : '-translate-x-full'} sm:translate-x-0 text-white shadow-md bg-blue-500`}
+                className={`fixed top-10 left-0 z-40 w-64 h-screen pt-7 transition-transform ${isMenuOpen ? '-translate-x-0' : '-translate-x-full'} sm:translate-x-0 text-white shadow-md bg-blue-500`}
             >
                 <div className="h-full px-3 pb-4 overflow-y-auto">
                     <ul className="space-y-2 font-medium">
@@ -130,6 +130,9 @@ const DefaultLayout = () => {
                         </div>
                     </div>
                 </div>
+                {notification && (
+                    <div className="fixed bottom-10 right-10 shadow-md bg-blue-500 rounded-lg p-6 text-white font-bold text-center border-t-2">{notification}</div>
+                )}
             </main>
         </>
     )
